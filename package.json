@@ -1,0 +1,27 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "description": "Learning Fastify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RodjonSobiani/fastify-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RodjonSobiani/fastify-api/issues"
+  },
+  "homepage": "https://github.com/RodjonSobiani/fastify-api#readme",
+  "dependencies": {
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.4"
+  }
+}
