@@ -4,7 +4,9 @@
   "description": "Learning Fastify",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,16 @@
   },
   "homepage": "https://github.com/RodjonSobiani/fastify-api#readme",
   "dependencies": {
-    "fastify": "^4.28.1"
+    "@fastify/cors": "^9.0.1",
+    "fastify": "^4.28.1",
+    "fastify-plugin": "^4.5.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",
+    "eslint": "^9.7.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }
