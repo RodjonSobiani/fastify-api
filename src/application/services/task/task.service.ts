@@ -1,5 +1,5 @@
-import { Task } from '../domain/task';
-import { TaskRepository } from '../domain/taskRepository';
+import { Task } from '../../../domain/task';
+import { TaskRepository } from '../../../domain/taskRepository';
 
 export class TaskService {
     constructor(private repository: TaskRepository) {}

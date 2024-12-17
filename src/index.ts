@@ -1,31 +1,22 @@
-import fastify, { FastifyInstance } from 'fastify';
-import { InMemoryTaskRepository } from './infrastructure/inMemoryTaskRepository';
-import { TaskService } from './application/taskService';
-import { taskRoutes } from './interfaces/taskRoutes';
+import Fastify from 'fastify';
+import { registerRoutes } from './interfaces/routes';
+import { config } from './config/config';
 
-import cors from '@fastify/cors';
+const startServer = async () => {
+    const app = Fastify();
 
-const app: FastifyInstance = fastify({ logger: true });
+    registerRoutes(app);
 
-app.register(cors, {
-    origin: true, // Позволяет все источники (или укажите конкретный домен)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Укажите разрешенные методы
-});
-
-
-const taskRepository = new InMemoryTaskRepository();
-const taskService = new TaskService(taskRepository);
-
-taskRoutes(app, taskService);
-
-const start = async () => {
     try {
-        await app.listen({ port: 3000 });
-        app.log.info(`Server is running at http://localhost:3000`);
+        await app.listen({ port: config.SERVER_PORT, host: '0.0.0.0' });
+        console.log(`Server running at http://localhost:${config.SERVER_PORT}`);
     } catch (err) {
         app.log.error(err);
         process.exit(1);
     }
 };
 
-start();
+startServer().catch(err => {
+    console.error(err);
+    process.exit(1);
+});

@@ -112,6 +112,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "types": ["node"],
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
