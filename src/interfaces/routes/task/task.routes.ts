@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { TaskService } from '../application/services/task/task.service';
+import { TaskService } from '../../../application/services/task/task.service';
 
 interface TaskBody {
     title: string;

@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { UserService } from "../../application/services/user/user.service";
+import { UserService } from "../../../application/services/user/user.service";
 
 export async function userRoutes(app: FastifyInstance) {
     const userService = UserService(app);
