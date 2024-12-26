@@ -1,4 +1,4 @@
-import {buildApp} from "../app/core/fastify";
+import {buildApp} from "../app/core/buildApp";
 import {config} from "../app/config";
 
 const startServer = async () => {

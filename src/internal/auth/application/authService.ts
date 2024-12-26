@@ -1,35 +1,47 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { UserRepository } from '../../../external/database/repositories/userRepo';
-import {config} from "../../../app/config";
+import { db } from '../../db';
+import { config } from '../../../app/config';
+import {v4 as uuidV4} from "uuid";
+
+interface Tokens {
+    accessToken: string;
+    refreshToken: string;
+}
 
 export class AuthService {
-    constructor(private userRepo: UserRepository) {}
+    static async registerUser(email: string, password: string): Promise<void> {
+        const passwordHash = await bcrypt.hash(password, 10);
 
-    async register(email: string, password: string) {
-        const existingUser = await this.userRepo.findByEmail(email);
-        if (existingUser) {
-            throw new Error('User already exists');
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await this.userRepo.create({ email, password: hashedPassword });
-
-        return this.generateTokens(user.id);
+        await db
+            .insertInto('users')
+            .values({
+                id: uuidV4(),
+                email,
+                password_hash: passwordHash,
+                created_at: new Date(),
+            })
+            .execute();
     }
 
-    async login(email: string, password: string) {
-        const user = await this.userRepo.findByEmail(email);
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            throw new Error('Invalid credentials');
+    static async loginUser(email: string, password: string): Promise<Tokens | null> {
+        const user = await db
+            .selectFrom('users')
+            .select(['id', 'password_hash'])
+            .where('email', '=', email)
+            .executeTakeFirst();
+
+        if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+            return null;
         }
 
-        return this.generateTokens(user.id);
-    }
+        const accessToken = jwt.sign({ userId: user.id }, config.jwt.secret, {
+            expiresIn: config.jwt.expiration,
+        });
 
-    private generateTokens(userId: string) {
-        const accessToken = jwt.sign({ userId }, config.jwt.secret, { expiresIn: config.jwt.expiration });
-        const refreshToken = jwt.sign({ userId }, config.jwt.secret, { expiresIn: '7d' });
+        const refreshToken = jwt.sign({ userId: user.id }, config.jwt.secret, {
+            expiresIn: '7d',
+        });
 
         return { accessToken, refreshToken };
     }
