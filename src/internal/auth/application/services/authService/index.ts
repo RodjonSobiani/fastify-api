@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { db } from '../../db';
-import { config } from '../../../app/config';
+import { db } from '../../../../db';
+import { config } from '../../../../../app/config';
 import {v4 as uuidV4} from "uuid";
 
 interface Tokens {

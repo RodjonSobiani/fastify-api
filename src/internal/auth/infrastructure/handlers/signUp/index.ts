@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import {joiRegisterUserSchema, ZodRegisterUserInput, zodRegisterUserSchema} from "../../validation/signUp";
-import {AuthService} from "../../../application/authService";
+import {AuthService} from "../../../application/services/authService";
 
 export async function signUpHandler(request: FastifyRequest, reply: FastifyReply) {
     const { error, value } = joiRegisterUserSchema.validate(request.body);

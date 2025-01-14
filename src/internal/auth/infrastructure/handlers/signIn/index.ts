@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import {AuthService} from "../../../application/authService";
+import {AuthService} from "../../../application/services/authService";
 
 export async function signInHandler(request: FastifyRequest, reply: FastifyReply) {
     const { email, password } = request.body as { email: string; password: string };

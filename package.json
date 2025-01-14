@@ -14,6 +14,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
+    "migrate": "knex migrate:latest --knexfile knexfile.ts",
     "migrate:up": "knex migrate:latest",
     "migrate:down": "knex migrate:rollback",
     "code-check": "tsc --noEmit"
