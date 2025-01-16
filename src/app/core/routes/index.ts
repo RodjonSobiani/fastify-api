@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify';
+import {FastifyInstance} from 'fastify';
 import fastifyJwt from "@fastify/jwt";
 import fastifyCors from "@fastify/cors";
 import {config} from "../../config";
@@ -10,7 +10,7 @@ export default async function routes(app: FastifyInstance) {
         origin: '*',
         methods: ['ALL']
     });
-    app.register(fastifyJwt, { secret: config.jwt.secret });
-    app.register(authRoutes, { prefix: '/auth' });
-    app.register(calculateRoutes, { prefix: "/calculate" });
+    app.register(fastifyJwt, {secret: config.jwt.secret});
+    app.register(authRoutes, {prefix: '/auth'});
+    app.register(calculateRoutes, {prefix: "/calculate"});
 }

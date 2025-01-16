@@ -1,6 +1,6 @@
-import { FastifyInstance } from 'fastify';
-import {signUpHandler} from "./handlers/signUp";
-import {signInHandler} from "./handlers/signIn";
+import {FastifyInstance} from 'fastify';
+import {signUpHandler} from "../handlers/sign-up";
+import {signInHandler} from "../handlers/sign-in";
 
 export default async function authRoutes(app: FastifyInstance) {
     app.post('/register', signUpHandler);

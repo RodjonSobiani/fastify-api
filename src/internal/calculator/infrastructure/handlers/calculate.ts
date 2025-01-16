@@ -1,5 +1,5 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
-import {CalculationService} from "../../application/services/calculateService/calculateService";
+import {FastifyReply, FastifyRequest} from 'fastify';
+import {CalculationService} from "../../application/services/calculate";
 
 interface CalculationRequest {
     birthDate: string;
@@ -10,16 +10,16 @@ export async function calculateHandler(
     reply: FastifyReply
 ): Promise<void> {
     try {
-        const { birthDate } = request.body;
+        const {birthDate} = request.body as CalculationRequest;
 
         if (!/^\d{2}\.\d{2}\.\d{4}$/.test(birthDate)) {
-            return reply.status(400).send({ error: 'Invalid birth date format. Use "dd.mm.yyyy"' });
+            return reply.status(400).send({error: 'Invalid birth date format. Use "dd.mm.yyyy"'});
         }
 
         const result = CalculationService.calculateBirthDateData(birthDate);
 
         reply.status(200).send(result);
     } catch (error) {
-        reply.status(500).send({ error: 'Internal server error' });
+        reply.status(500).send({error: 'Internal server error'});
     }
 }
