@@ -1,7 +1,10 @@
 import {buildApp} from "../app/core/build-app";
 import {config} from "../app/config";
+import {checkDbConnections} from "../internal/database/check-db-connections";
 
 const startServer = async () => {
+    await checkDbConnections();
+
     const app = await buildApp();
 
     try {

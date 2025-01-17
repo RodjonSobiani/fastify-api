@@ -22,4 +22,10 @@ export const config = {
         password: process.env.DB_PASSWORD || 'postgres',
         DATABASE_URL: process.env.DATABASE_URL || '',
     },
+    log: {
+        level: process.env.LOG_LEVEL || 'info',
+    },
+    db_log: {
+        level: process.env.DB_LOG_LEVEL || 'on',
+    }
 };

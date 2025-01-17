@@ -1,6 +1,6 @@
 import {FastifyInstance} from "fastify";
 import {calculateHandler} from "../handlers/calculate";
-import {authMiddleware} from "../../../auth/infrastructure/middleware/auth";
+import {authMiddleware} from "../../../auth/infrastructure/middleware/auth-middleware";
 
 interface CalculationRequest {
     birthDate: string;

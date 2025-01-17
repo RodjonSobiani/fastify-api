@@ -1,0 +1,49 @@
+/fastify-api
+├── /src
+│   ├── /app
+│   │   ├── /config
+│   │   │   └── index.ts
+│   │   ├── /core
+│   │   │   ├── /build-app
+│   │   │   │   └── index.ts
+│   │   │   └── /routes
+│   │   │       └── index.ts
+│   ├── /cmd
+│   │   └── main.ts
+│   ├── /external
+│   ├── /internal
+│   │   ├── /auth
+│   │   │   ├── /application
+│   │   │   │   └── /services
+│   │   │   │       ├── login-service.ts
+│   │   │   │       ├── logout-service.ts
+│   │   │   │       └── register-service.ts
+│   │   │   ├── /infrastructure
+│   │   │   │   ├── /handlers
+│   │   │   │   │   ├── logout-handler.ts
+│   │   │   │   │   ├── sign-in-handler.ts
+│   │   │   │   │   └── sign-up-handler.ts
+│   │   │   │   ├── /middleware
+│   │   │   │   │   └── auth-middleware.ts
+│   │   │   │   └── /routes
+│   │   │   │       └── auth-routes.ts
+│   │   │   └── /validation
+│   │   │       ├── sign-in-validation.ts
+│   │   │       └── sign-up-validation.ts
+│   │   ├── /database
+│   │   │   ├── /knex
+│   │   │   │   ├── check-connection-knex.ts
+│   │   │   │   └── connection-knex.ts
+│   │   │   └── /kysely
+│   │   │   │   ├── check-connection-kysely.ts
+│   │   │   │   ├── connection-kysely.ts
+│   │   │   │   └── kysely-schema.ts
+│   │   │   └── check-db-connections.ts
+│   │   ├── /shared
+│   │   │   └── logger.ts
+├── .gitignore
+├── fastify-api.txt
+├── package.json
+├── package-lock.json
+├── README.md
+├── tsconfig.json
